@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import Accordian from "./Accordian.js";
+import Steps from "./Steps.js";
+import { useState } from "react";
 
-function App() {
+const messages = [
+  "Learn React ⚛️",
+  "Apply for jobs 💼",
+  "Invest your new income 🤑",
+  "Retire 🌴",
+];
+
+const items = [
+  {id: 1, title: "JavaScript", body: "Body1"},
+  {id: 2, title: "C", body: "Body2"},
+  {id: 3, title: "VB", body: <ul><li>a</li><li>b</li></ul>}
+]
+
+const App = () => {
+  const [openComponent, setOpenComponent] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <button
+        className="close"
+        onClick={() => setOpenComponent((prev) => !prev)}
+      >
+        X
+      </button>
+      {openComponent && <Steps messages={messages} />}
+
+      <Accordian items={items} />
+    </>
+
+    
   );
-}
+};
 
 export default App;
